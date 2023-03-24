@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Gravity;
+    src: url(/fonts/ABC-Gravity/ABCGravity-ExtraCondensed-Trial.woff2);
+}
+@font-face {
+    font-family: Gerstner-light;
+    src: url(/fonts/Gerstner-ProgrammLight/Gerstner-ProgrammLight.woff2);
+}
+@font-face {
+    font-family: Gerstner-medium;
+    src: url(/fonts/Gerstner-ProgrammMedium/Gerstner-ProgrammMedium.woff2);
+}
+
+*{
+    font-family: Gerstner-light;
+}
+h1{
+    font-family: Gravity;
+}
+
