@@ -6,7 +6,7 @@ const conexion = require('./database/db')
 router.get('/', (req,res)=>{
     
     /*
-    conexion.query('Select * from trabajos',(error,results) =>{
+    conexion.query('Select * from usuarios',(error,results) =>{
         if(error){
             throw error;
         }else{

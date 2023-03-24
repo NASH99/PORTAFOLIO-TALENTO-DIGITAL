@@ -21,11 +21,21 @@ ul{
     a{
         text-decoration: none;
         li{
-            color: #e6f0e8;
+            color: #5e625f;
             padding: 0 12px 0 12px;
             font-size: 2rem;
             list-style: none;
+            transition-duration: 0.4s;
+        }
+        li:hover{
+            color: #e6f0e8;
         }
     }
-
 }
+
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+
