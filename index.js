@@ -3,6 +3,10 @@ const app = express();
 const port = 3000;
 const conexion = require('./database/db')
 
+const bodyparser = require('body-parser');
+
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: false}));
 
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
