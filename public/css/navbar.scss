@@ -24,7 +24,6 @@ ul{
         li{
             color: #5e625f;
             padding: 0 12px 0 12px;
-            
             list-style: none;
             transition-duration: 0.4s;
         }
@@ -34,9 +33,13 @@ ul{
     }
 }
 
-.button {
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+a{
+    text-decoration: none;
+    .button {
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+    }
 }
+
 
 

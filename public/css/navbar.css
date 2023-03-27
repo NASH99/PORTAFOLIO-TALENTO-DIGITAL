@@ -33,6 +33,9 @@ ul a li:hover {
   color: #e6f0e8;
 }
 
-.button { /* Safari */
+a {
+  text-decoration: none;
+}
+a .button { /* Safari */
   transition-duration: 0.4s;
 }/*# sourceMappingURL=navbar.css.map */

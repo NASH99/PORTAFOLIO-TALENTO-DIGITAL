@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const conexion = require('./database/db')
 
 
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
-const PassporLocal = require('passport-local').Strategy;
+const PassportLocal = require('passport-local').Strategy;
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('Mi secreto'));
 app.use(session({
@@ -18,11 +19,28 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new PassporLocal(function(username,password,done){
-    if(username === 'ignacio' && password === '123')
-    return done(null, {id:1,name:'cody'});
+passport.use(new PassportLocal(function(username,password,done){
+    let usuarios = [];
 
-    done(null,false);
+    conexion.query('Select * from user',(error,results) =>{
+        if(error){
+            throw error;
+        }else{
+            usuarios.push(results)
+            console.log(usuarios)
+            usuarios[0].forEach(element => {
+                
+                if(username === element.emailUser && password === element.passwordUser.toString()){
+                    usuarios.splice(0,usuarios.length);
+                    console.log(usuarios)
+                    return done(null, {id:1,name:'cody'});
+                }else{
+                    console.log('no match')
+                }
+            });
+        }
+    })
+    //done(null,false);
 }));
 
 passport.serializeUser(function(user,done){
