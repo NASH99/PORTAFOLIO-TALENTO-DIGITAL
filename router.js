@@ -39,17 +39,18 @@ router.get('/signup',(req,res)=>{
     res.render('signup');
 })
 router.post('/signup',(req,res)=>{
+    let username = req.body.username;
     let name = req.body.name;
     let lastname = req.body.lastname;
     let email = req.body.email;
     let password = req.body.password;
-    console.log(name,lastname,email,password)
+    console.log(username,name,lastname,email,password)
 
-    conexion.query(`INSERT INTO datos (nombre)VALUES('${name}')`,(error,results) =>{
+    conexion.query(`INSERT INTO usuario (usernameUser,emailUser, passwordUser, nameUser, lastnameUser)VALUES('${username}','${email}','${password}','${name}','${lastname}')`,(error,results) =>{
         if(error){
             throw error;
         }else{
-            conexion.query('Select * from datos',(error,results) =>{
+            conexion.query('Select * from usuario',(error,results) =>{
                 if(error){
                     throw error;
                 }else{
