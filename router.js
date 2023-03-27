@@ -59,7 +59,7 @@ router.post('/signup',(req,res)=>{
             })
         }
     })
-    res.render('signup');
+    res.render('community');
 })
 
 module.exports = router;
