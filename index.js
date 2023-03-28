@@ -39,7 +39,7 @@ passport.use(new PassportLocal(function(username,password,done){
                     console.log(usuarios)
                     return done(null, {id:1,name:'cody'});
                 }else{
-                    console.log('no match')
+                    console.log('err')
                 }
             });
         }
