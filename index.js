@@ -24,19 +24,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new PassportLocal(function(username,password,done){
-    let usuarios = [];
 
     conexion.query('Select * from usuario',(error,results) =>{
         if(error){
             throw error;
         }else{
-            usuarios.push(results)
-            console.log(usuarios)
-            usuarios[0].forEach(element => {
-                
-                if(username === element.emailUser && password === element.passwordUser){
-                    usuarios.splice(0,usuarios.length);
-                    console.log(usuarios)
+            console.log(results)
+            results.forEach(element => {
+                if(username === element.emailUsuario && password === element.claveUsuario){
+                    results.splice(0,results.length);
+                    console.log(results);
                     return done(null, {id:1,name:'cody'});
                 }else{
                     console.log('err')

@@ -46,7 +46,7 @@ router.post('/signup',(req,res)=>{
     let password = req.body.password;
     console.log(username,name,lastname,email,password)
 
-    conexion.query(`INSERT INTO usuario (usernameUser,emailUser, passwordUser, nameUser, lastnameUser)VALUES('${username}','${email}','${password}','${name}','${lastname}')`,(error,results) =>{
+    conexion.query(`INSERT INTO usuario (nombreUsuario,apellidoUsuario,nickUsuario,emailUsuario,claveUsuario)VALUES('${name}','${lastname}','${username}','${email}','${password}')`,(error,results) =>{
         if(error){
             throw error;
         }else{
