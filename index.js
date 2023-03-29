@@ -34,23 +34,29 @@ passport.use(new PassportLocal(function(username,password,done){
                 if(username === element.emailUsuario && password === element.claveUsuario){
                     results.splice(0,results.length);
                     console.log(results);
-                    return done(null, {id:1,name:'cody'});
+                    return done(null, {id:element.idUsuario,name:element.nombreUsuario});
+                    
                 }else{
-                    console.log('err')
+                    
+                    //return done(null,false);
                 }
+                
             });
+            
         }
+        //done(null,false);
     })
     //done(null,false);
 }));
 
 passport.serializeUser(function(user,done){
-    done(null, {id:1, name: 'Cody'});
+    console.log(user.id)
+    done(null, user.id);
 });
+
 passport.deserializeUser(function(user,done){
     done(null, {id:1, name: 'Cody'});
 });
-
 
 app.use(express.static(__dirname + '/public'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
