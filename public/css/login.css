@@ -8,7 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0 0 104px 0;
-  height: 800px;
+  height: 100vh;
 }
 
 .contenedor {
