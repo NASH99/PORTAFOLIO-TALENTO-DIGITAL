@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const conexion = require('./database/db')
+const port = 3000;
 
 const bodyparser = require('body-parser');
 
@@ -29,14 +29,18 @@ passport.use(new PassportLocal(function(username,password,done){
         if(error){
             throw error;
         }else{
-            console.log(results)
-            results.forEach(element => {
-                if(username === element.emailUsuario && password === element.claveUsuario){
-                    results.splice(0,results.length);
-                    console.log(results);
+            results.rows.forEach(element => {
+                if(username === element.emailusuario && password === element.claveusuario){
+                    
+                    console.log(element.emailusuario);
+                    console.log(element.claveusuario);
+                    element = 'borrado element';
+                    results = 'borrado results';
+                    console.log(element)
+                    console.log(results)
                     return done(null, {id:1,name:'cody'});
                 }else{
-                    console.log('err')
+                    console.log('No hay coincidencias')
                 }
             });
         }
@@ -69,4 +73,5 @@ app.use('/', require('./router'));
 
 app.listen(port, ()=>{
     console.log('Server corriendo en: http://localhost:'+port);
+
 })
