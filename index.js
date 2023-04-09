@@ -26,6 +26,7 @@ app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
 
     conexion.query('Select * from usuario',(error,results) =>{
+<<<<<<< HEAD
         if(error){
             throw error;
         }else{
@@ -41,20 +42,38 @@ passport.use(new PassportLocal(function(username,password,done){
                     return done(null, {id:1,name:'cody'});
                 }else{
                     console.log('No hay coincidencias')
+=======
+        if (error) { return done(error); }
+        else{
+            console.log(results)
+            results.forEach(element => {
+                if(username === element.emailUsuario && password === element.claveUsuario){
+                    results.splice(0,results.length);
+                    console.log(results);
+                    return done(null, {id:element.idUsuario,name:element.nombreUsuario});
+                    
+                }else{
+                    
+                    return done(null,false);
+>>>>>>> main
                 }
+                
             });
+            
         }
+        //done(null,false);
     })
     //done(null,false);
 }));
 
 passport.serializeUser(function(user,done){
-    done(null, {id:1, name: 'Cody'});
+    console.log(user.id)
+    done(null, user.id);
 });
+
 passport.deserializeUser(function(user,done){
     done(null, {id:1, name: 'Cody'});
 });
-
 
 app.use(express.static(__dirname + '/public'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS

@@ -4,11 +4,11 @@ body {
 
 .main-index {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
   padding: 0 0 104px 0;
-  height: 1000px;
+  height: 100vh;
 }
 
 .contenedor {

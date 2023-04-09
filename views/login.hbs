@@ -6,13 +6,16 @@
     <div class="contenedor">
         <h3>Login</h3>
         <form action="/login" method="POST">
-            <input class="form-control" type="text" id="email" placeholder="email" name="username">
-            <input class="form-control" type="password" id="password" placeholder="password" name="password">
+            <input class="form-control" type="text" id="email" placeholder="email" name="username" required>
+            <input class="form-control" type="password" id="password" placeholder="password" name="password" required>
             <button type="submit" value="enviar">Login</button>
         </form>
         <p>No tienes una cuenta?
             <a href="/signup">Registrate aquí</a>
         </p>
+    </div>
+    <div class="contenedor">
+        <img src="/img/imglogin.jpg" alt="" width="55%">
     </div>
 </main>
 
