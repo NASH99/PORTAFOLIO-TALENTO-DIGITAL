@@ -26,9 +26,8 @@ app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
 
     conexion.query('Select * from usuario',(error,results) =>{
-        if(error){
-            throw error;
-        }else{
+        if (error) { return done(error); }
+        else{
             console.log(results)
             results.forEach(element => {
                 if(username === element.emailUsuario && password === element.claveUsuario){
@@ -38,7 +37,7 @@ passport.use(new PassportLocal(function(username,password,done){
                     
                 }else{
                     
-                    //return done(null,false);
+                    return done(null,false);
                 }
                 
             });
