@@ -70,7 +70,17 @@ router.get('/user',(req,res)=>{
 })
 
 router.get('/mantenedor',(req,res)=>{
-    res.render('mantenedor/index');
+    let usuarios;
+    conexion.query('select idusuario,nombreusuario,apellidousuario,emailusuario from usuario',(error,results)=>{
+        if(error){
+            throw error;
+        }else{
+            usuarios = results.rows;
+            
+            res.render('mantenedor/index',{usuarios});
+        }
+    })
+    
 })
 
 router.use((req, res,next) => {
