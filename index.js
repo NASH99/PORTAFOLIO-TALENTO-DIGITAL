@@ -26,53 +26,38 @@ app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
 
     conexion.query('Select * from usuario',(error,results) =>{
-<<<<<<< HEAD
+
         if(error){
             throw error;
         }else{
+            
             results.rows.forEach(element => {
                 if(username === element.emailusuario && password === element.claveusuario){
-                    
                     console.log(element.emailusuario);
                     console.log(element.claveusuario);
-                    element = 'borrado element';
-                    results = 'borrado results';
-                    console.log(element)
+
+                    console.log(element.idUsuario)
                     console.log(results)
-                    return done(null, {id:1,name:'cody'});
-                }else{
-                    console.log('No hay coincidencias')
-=======
-        if (error) { return done(error); }
-        else{
-            console.log(results)
-            results.forEach(element => {
-                if(username === element.emailUsuario && password === element.claveUsuario){
-                    results.splice(0,results.length);
-                    console.log(results);
-                    return done(null, {id:element.idUsuario,name:element.nombreUsuario});
-                    
-                }else{
-                    
-                    return done(null,false);
->>>>>>> main
+                    return done(null, {id:element.idusuario,name:element.nombreusuario});
                 }
+                    console.log('No hay coincidencias')
+                    //return done(null,false);
                 
             });
-            
+
         }
-        //done(null,false);
+
     })
-    //done(null,false);
+    
 }));
 
 passport.serializeUser(function(user,done){
-    console.log(user.id)
+    console.log(user.id,user.name)
     done(null, user.id);
 });
 
 passport.deserializeUser(function(user,done){
-    done(null, {id:1, name: 'Cody'});
+    done(null, {id:user.id, name: user.name});
 });
 
 app.use(express.static(__dirname + '/public'));

@@ -1,0 +1,13 @@
+.card {
+  background-color: #212121;
+  width: 240px;
+  height: 320px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #e6efe8;
+}
+.card img {
+  width: 100%;
+}/*# sourceMappingURL=cards.css.map */

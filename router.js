@@ -62,4 +62,11 @@ router.post('/signup',(req,res)=>{
     res.render('community');
 })
 
+router.use((req, res,next) => {
+    res.status(404).render('404',{
+        titulo: "404",
+        descripcion: 'Pagina no encontrada'
+    })
+})
+
 module.exports = router;
