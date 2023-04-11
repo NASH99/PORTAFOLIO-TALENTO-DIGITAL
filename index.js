@@ -26,6 +26,7 @@ app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
 
     conexion.query('Select * from usuario',(error,results) =>{
+        console.log(results.rows);
 
         if(error){
             throw error;

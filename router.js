@@ -22,7 +22,10 @@ router.get('/community',(req,res,next)=>{
     
     res.redirect('/login');
 } ,(req,res)=>{
-    res.render('community')
+
+    let nombres = ['ignacio','manuel','andrea','francisco']
+
+    res.render('community',{nombres})
     
 });
 
@@ -60,6 +63,10 @@ router.post('/signup',(req,res)=>{
         }
     })
     res.render('community');
+})
+
+router.get('/user',(req,res)=>{
+    res.render('user');
 })
 
 router.use((req, res,next) => {
