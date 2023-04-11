@@ -69,6 +69,10 @@ router.get('/user',(req,res)=>{
     res.render('user');
 })
 
+router.get('/mantenedor',(req,res)=>{
+    res.render('mantenedor/index');
+})
+
 router.use((req, res,next) => {
     res.status(404).render('404',{
         titulo: "404",
