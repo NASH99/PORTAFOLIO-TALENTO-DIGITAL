@@ -31,7 +31,6 @@ passport.use(new PassportLocal(function(username,password,done){
         if(error){
             throw error;
         }else{
-            
             results.rows.forEach(element => {
                 if(username === element.emailusuario && password === element.claveusuario){
                     console.log(element.emailusuario);

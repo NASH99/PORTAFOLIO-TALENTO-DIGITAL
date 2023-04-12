@@ -1,5 +1,4 @@
 
-
 console.log('funciona')
 function obtener() { 
 conexion.query('select * from usuario',(error,results)=>{

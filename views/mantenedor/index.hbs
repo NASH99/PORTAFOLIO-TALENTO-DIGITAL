@@ -2,23 +2,53 @@
 <link rel="stylesheet" href="/css/mantenedor/index.css">
 
 <div class="container">
-    <h1>Bienvenido Administrador</h1>
+    <h1>Welcome Admin</h1>
     <div class="contenedor">
         <aside>
-            <a href="/mantenedor">
-                <button type="button" class="btn btn-dark">Crear nuevo usuario</button>
-            </a>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#crearUsuario">Add new user</button>
+                <div class="modal fade" id="crearUsuario" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add User</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/mantenedor" method="POST">
+                                    <input class="form-control" type="text" id="name" placeholder="Name" name="name" required>
+                                    <input class="form-control" type="text" id="lastname" placeholder="Lastname" name="lastname" required>
+                                    <input class="form-control" type="text" id="username" placeholder="Username" name="username" required>
+                                    <input class="form-control" type="email" id="email" placeholder="Email" name="email" required>
+                                    <input class="form-control" type="password" id="password" placeholder="Password" name="password" required>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="admin" name="admin">
+                                        <label class="form-check-label" for="isAdmin">
+                                            Es administrador
+                                        </label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-ligth" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-dark" value="enviar">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            
         </aside>
         <section>
             <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        <th scope="col">name</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,8 +59,10 @@
                         <td>{{this.nombreusuario}}</td>
                         <td>{{this.apellidousuario}}</td>
                         <td>{{this.emailusuario}}</td>
-                        <td><a href="/mantenedor" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="/img/icons/edit.svg" alt="" width="25px"></a></td>
-                        <td><a href="/mantenedor" id="eliminar"><img src="/img/icons/delete.svg" alt="" width="25px"></a></td>
+                        <td><a href="/mantenedor" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img
+                                    src="/img/icons/edit.svg" alt="" width="25px"></a></td>
+                        <td><a href="/mantenedor" id="eliminar"><img src="/img/icons/delete.svg" alt=""
+                                    width="25px"></a></td>
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -42,11 +74,16 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <input class="form-control" type="text" id="name" placeholder="Name" name="name" required>
-                                        <input class="form-control" type="text" id="lastname" placeholder="Lastname" name="lastname" required>
-                                        <input class="form-control" type="text" id="username" placeholder="Username" name="username" required>
-                                        <input class="form-control" type="email" id="email" placeholder="Email" name="email" required>
-                                        <input class="form-control" type="password" id="password" placeholder="Password" name="password" required>
+                                        <input class="form-control" type="text" id="name" placeholder="Name" name="name"
+                                            required>
+                                        <input class="form-control" type="text" id="lastname" placeholder="Lastname"
+                                            name="lastname" required>
+                                        <input class="form-control" type="text" id="username" placeholder="Username"
+                                            name="username" required>
+                                        <input class="form-control" type="email" id="email" placeholder="Email"
+                                            name="email" required>
+                                        <input class="form-control" type="password" id="password" placeholder="Password"
+                                            name="password" required>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-ligth"

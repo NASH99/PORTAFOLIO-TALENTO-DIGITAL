@@ -1,7 +1,6 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-
 const conexion = require('./database/db')
 
 router.get('/',(req,res)=>{
@@ -16,15 +15,12 @@ router.get('/about',(req,res)=>{
     res.render('about');
 })
 
-
 router.get('/community',(req,res,next)=>{
     if(req.isAuthenticated()) return next();
     
     res.redirect('/login');
 } ,(req,res)=>{
-
     let nombres = ['ignacio','manuel','andrea','francisco']
-
     res.render('community',{nombres})
     
 });
@@ -53,6 +49,29 @@ router.post('/signup',(req,res)=>{
         if(error){
             throw error;
         }else{
+            console.log('DATOS INGRESADOS CORRECTAMENTE')
+        }
+    })
+    res.render('community');
+})
+
+router.post('/mantenedor',(req,res)=>{
+    let username = req.body.username;
+    let name = req.body.name;
+    let lastname = req.body.lastname;
+    let email = req.body.email;
+    let password = req.body.password;
+    let isAdmin = req.body.admin;
+    if(isAdmin != 1){
+        isAdmin = false;
+    } else{
+        isAdmin = true;
+    }
+
+    conexion.query(`INSERT INTO usuario (nombreUsuario,apellidoUsuario,nickUsuario,emailUsuario,claveUsuario,isadminusuario)VALUES('${name}','${lastname}','${username}','${email}','${password}','${isAdmin}')`,(error,results) =>{
+        if(error){
+            throw error;
+        }else{
             conexion.query('Select * from usuario',(error,results) =>{
                 if(error){
                     throw error;
@@ -62,7 +81,8 @@ router.post('/signup',(req,res)=>{
             })
         }
     })
-    res.render('community');
+    
+    res.redirect('/mantenedor');
 })
 
 router.get('/user',(req,res)=>{
@@ -76,7 +96,6 @@ router.get('/mantenedor',(req,res)=>{
             throw error;
         }else{
             usuarios = results.rows;
-            
             res.render('mantenedor/index',{usuarios});
         }
     })
