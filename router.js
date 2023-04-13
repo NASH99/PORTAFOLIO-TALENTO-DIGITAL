@@ -55,6 +55,19 @@ router.post('/signup',(req,res)=>{
     res.render('community');
 })
 
+router.get('/mantenedor',(req,res)=>{
+    let usuarios;
+    conexion.query('select idusuario,nombreusuario,apellidousuario,emailusuario from usuario',(error,results)=>{
+        if(error){
+            throw error;
+        }else{
+            usuarios = results.rows;
+            res.render('mantenedor/index',{usuarios});
+        }
+    })
+    
+})
+
 router.post('/mantenedor',(req,res)=>{
     let username = req.body.username;
     let name = req.body.name;
@@ -89,17 +102,33 @@ router.get('/user',(req,res)=>{
     res.render('user');
 })
 
-router.get('/mantenedor',(req,res)=>{
-    let usuarios;
-    conexion.query('select idusuario,nombreusuario,apellidousuario,emailusuario from usuario',(error,results)=>{
+//falta terminar la ruta eliminar al pulsar delete en mantenedores
+router.get('/mantenedor/:idName',(req,res)=>{
+    let idName = req.params.idName;
+    conexion.query(`delete from perfil where idusuario = '${idName}';`),(error,perfil)=>{
+        if(error){
+            console.log('HUBO UN PROBLEMA CON ELIMINAR EL PERFIL')
+            throw error;
+        }else{
+            console.log('SE ELIMINO EL PERFIL SATISFACTORIAMENTE')
+        }
+    }
+    conexion.query(`delete from publicacion where idusuario = '${idName}';`),(error,publicacion)=>{
+        if(error){
+            console.log('HUBO UN PROBLEMA CON ELIMINAR LA PUBLICACION')
+            throw error;
+        }else{
+            console.log('SE ELIMINO LA PUBLICACION SATISFACTORIAMENTE')
+        }
+    }
+    conexion.query(`delete from usuario where idusuario = '${idName}';`,(error,results)=>{
         if(error){
             throw error;
         }else{
-            usuarios = results.rows;
-            res.render('mantenedor/index',{usuarios});
+            console.log(`USUARIO '${idName}' ELIMINADO CON EXITO`)
         }
     })
-    
+    res.redirect('/mantenedor');
 })
 
 router.use((req, res,next) => {
