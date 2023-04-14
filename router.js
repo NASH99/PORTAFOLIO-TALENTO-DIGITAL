@@ -57,7 +57,7 @@ router.post('/signup',(req,res)=>{
 
 router.get('/mantenedor',(req,res)=>{
     let usuarios;
-    conexion.query('select idusuario,nombreusuario,apellidousuario,emailusuario from usuario',(error,results)=>{
+    conexion.query('select idusuario,nombreusuario,apellidousuario,nickusuario,emailusuario,claveusuario,isadminusuario from usuario',(error,results)=>{
         if(error){
             throw error;
         }else{
@@ -95,6 +95,44 @@ router.post('/mantenedor',(req,res)=>{
         }
     })
     
+    res.redirect('/mantenedor');
+})
+
+router.post('/mantenedor/update',(req,res)=>{
+    console.log(req.body)
+    let idusuario = req.body.idusuario;
+    let username = req.body.username;
+    let name = req.body.name;
+    let lastname = req.body.lastname;
+    let email = req.body.email;
+    let password = req.body.password;
+    let isAdmin = req.body.admin;
+    
+    if(isAdmin != 1){
+        isAdmin = false;
+    } else{
+        isAdmin = true;
+    }
+    console.log(idusuario)
+
+    conexion.query(`UPDATE usuario SET nombreusuario = '${name}',apellidousuario = '${lastname}', nickusuario = '${username}',emailusuario = '${email}',claveusuario = '${password}' WHERE idusuario = '${idusuario}'`,(error,results) =>{
+        if(error){
+            console.log('DATOS ACTUALIZADOS INCORRECTAMENTE')
+            throw error;
+        }else{
+            console.log('DATOS ACTUALIZADOS CORRECTAMENTE')
+        }
+    })
+
+    /*
+    conexion.query(`UPDATE usuario SET nombreusuario = '${name}',apellidousuario = ${lastname}, nickusuario = ${username}, emailusuario = ${email}, password = ${password} WHERE idusuario = ${idusuario}`,(error,results) =>{
+        if(error){
+            throw error;
+        }else{
+            console.log('DATOS ACTUALIZADOS CORRECTAMENTE')
+        }
+    })
+    */
     res.redirect('/mantenedor');
 })
 

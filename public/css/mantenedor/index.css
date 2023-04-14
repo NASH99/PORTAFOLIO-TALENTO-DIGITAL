@@ -1,4 +1,5 @@
 .contenedor {
+  padding-bottom: 100px;
   display: flex;
 }
 .contenedor aside {
