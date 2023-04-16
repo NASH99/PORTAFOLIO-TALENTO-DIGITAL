@@ -4,6 +4,15 @@ const router = express.Router();
 const conexion = require('./database/db')
 
 router.get('/',(req,res)=>{
+    let datos;
+    fetch('http://localhost/api/students')
+        .then(result => result.json())
+        .then((output) => {
+            console.log('Output: ', output);
+            datos = output;
+    }).catch(err => console.error(err));
+
+    console.log(datos)
     res.render('index')    
 });
 
