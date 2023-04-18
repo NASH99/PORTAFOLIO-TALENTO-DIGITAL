@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const conexion = require('./database/db')
+const urlApi = 'http://localhost:3001/api'
 
 router.get('/',(req,res)=>{
     let datos;
@@ -49,23 +50,19 @@ router.post('/login',passport.authenticate('local',{
 router.get('/signup',(req,res)=>{
     res.render('signup');
 })
-router.post('/signup',(req,res)=>{
-    let username = req.body.username;
-    let name = req.body.name;
-    let lastname = req.body.lastname;
-    let email = req.body.email;
-    let password = req.body.password;
-    console.log(username,name,lastname,email,password)
-
-    conexion.query(`INSERT INTO usuario (nombreUsuario,apellidoUsuario,nickUsuario,emailUsuario,claveUsuario)VALUES('${name}','${lastname}','${username}','${email}','${password}')`,(error,results) =>{
-        if(error){
-            throw error;
-        }else{
-            console.log('DATOS INGRESADOS CORRECTAMENTE')
-        }
-    })
+router.post("/signup", async (req, res) => {
+    const { username, name, lastname, email, password } = req.body;
+    const body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: true }
+    console.log(body)
+    const resultado = await fetch(urlApi+'/usuarios', {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" }
+    });
+    //const data = await resultado.json();
     res.render('community');
-})
+    //res.render("index", { productos: data });
+  });
 
 router.get('/mantenedor',(req,res)=>{
     let usuarios;

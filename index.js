@@ -35,12 +35,14 @@ passport.use(new PassportLocal(function(username,password,done){
             datos.forEach(element => {
                 console.log(element.emailUsuario)
                 console.log(element.claveUsuario)
-                
-                if(username === element.emailUsuario && password === element.claveUsuario){      
+                if(username === element.emailUsuario && password === element.claveUsuario){     
+                    console.log('USUARIOS CORRECTOS')
+                    console.log(element.emailUsuario)
+                    console.log(element.claveUsuario) 
                     return done(null, {id:element.idUsuario,name:element.nombreUsuario});
                 }
-                    //console.log('No hay coincidencias')
-                    return done(null,false);
+                    console.log('No hay coincidencias')
+                    //return done(null,false);
 
             });
 
