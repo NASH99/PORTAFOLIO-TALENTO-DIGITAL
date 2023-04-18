@@ -24,31 +24,29 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new PassportLocal(function(username,password,done){
+    let datos;
 
-    conexion.query('Select * from usuario',(error,results) =>{
-        console.log(results.rows);
-
-        if(error){
-            throw error;
-        }else{
-            results.rows.forEach(element => {
-                if(username === element.emailusuario && password === element.claveusuario){
-                    console.log(element.emailusuario);
-                    console.log(element.claveusuario);
-
-                    console.log(element.idUsuario)
-                    console.log(results)
-                    return done(null, {id:element.idusuario,name:element.nombreusuario});
-                }
-                    console.log('No hay coincidencias')
-                    //return done(null,false);
+    fetch('http://localhost:3001/api/usuarios')
+        .then(result => result.json())
+        .then((output) => {
+            //console.log('Output: ', output);
+            datos = output;
+            console.log(datos)
+            datos.forEach(element => {
+                console.log(element.emailUsuario)
+                console.log(element.claveUsuario)
                 
+                if(username === element.emailUsuario && password === element.claveUsuario){      
+                    return done(null, {id:element.idUsuario,name:element.nombreUsuario});
+                }
+                    //console.log('No hay coincidencias')
+                    return done(null,false);
+
             });
 
-        }
-
-    })
-    
+    }).catch(err => {
+        console.error(err)
+    } );
 }));
 
 passport.serializeUser(function(user,done){

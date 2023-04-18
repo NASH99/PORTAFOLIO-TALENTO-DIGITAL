@@ -5,15 +5,18 @@ const conexion = require('./database/db')
 
 router.get('/',(req,res)=>{
     let datos;
-    fetch('http://localhost/api/students')
+
+    fetch('http://localhost:3001/api/usuarios')
         .then(result => result.json())
         .then((output) => {
             console.log('Output: ', output);
             datos = output;
-    }).catch(err => console.error(err));
+            res.render('index')   
+    }).catch(err => {
+        console.error(err)
+        res.render('404')
+    } );
 
-    console.log(datos)
-    res.render('index')    
 });
 
 router.get('/edit',(req,res)=>{
