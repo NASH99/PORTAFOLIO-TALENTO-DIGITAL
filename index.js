@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const conexion = require('./database/db')
 const port = 3000;
+const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+//const urlApi = 'http://localhost:3001/api'
 
 const bodyparser = require('body-parser');
 
@@ -26,7 +28,7 @@ app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
     let datos;
 
-    fetch('http://localhost:3001/api/usuarios')
+    fetch(urlApi+'/usuarios')
         .then(result => result.json())
         .then((output) => {
             //console.log('Output: ', output);
