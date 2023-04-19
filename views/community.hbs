@@ -1,14 +1,77 @@
 {{#> plantilla}}
 
+<div class="container">
+    <h1>Community</h1>
+    <h3>Top Artists</h3>
+<div class="splide">
+    <div class="splide__track">
+        <div class="splide__list">
+            <div class="splide__slide">
+                <div class="img_box">
+                    <a href="https://splidejs.com/">
+                        <img src="/img/prueba.jpg" alt="" width="130px" height="130px">
+                    </a>
+                    <p>Artista</p>
+                </div>
+            </div>
+            <div class="splide__slide">
+                <div class="img_box">
+                    <img src="/img/prueba2.jpg" alt="" width="130px" height="130px">
+                </div>
+            </div>
+            <div class="splide__slide">
+                <div class="img_box">
+                    <img src="/img/prueba.jpg" alt="" width="130px" height="130px">
+                </div>
+            </div>
+            <div class="splide__slide">
+                <div class="img_box">
+                    <img src="/img/prueba.jpg" alt="" width="130px" height="130px">
+                </div>
+            </div>
+            <div class="splide__slide">
+                <div class="img_box">
+                    <img src="/img/prueba2.jpg" alt="" width="130px" height="130px">
+                </div>
+            </div>
+            <div class="splide__slide">
+                <div class="img_box">
+                    <img src="/img/prueba.jpg" alt="" width="130px" height="130px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+</div>
+
+
+<!--   
 {{#each nombres}}
     <p>nombres del array</p>
 {{/each}}
-<link rel="stylesheet" href="/css/community.css">
-
-<h1>Community</h1>
-
 <div class="contenedor">
     {{> cards}}
 </div>
+-->
+<link rel="stylesheet" href="/css/community.css">
 
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+<script type="text/javascript">
+    var splide = new Splide( '.splide', {
+    type     : 'loop',
+    drag: boolean = true,
+    pagination: boolean = false,
+    height   : '150px',
+    focus    : 'center',
+    gap      : '12px',
+    autoWidth: true,
+      autoScroll: {
+    speed: 1,
+  },
+    } );
+
+    splide.mount();
+</script>
 {{/plantilla}}
