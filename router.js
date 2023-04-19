@@ -48,10 +48,10 @@ router.post('/login',passport.authenticate('local',{
 router.get('/signup',(req,res)=>{
     res.render('signup');
 })
+//METODO POST PARA GUARDAR NUEVO REGISTRO SIGNUP
 router.post("/signup", async (req, res) => {
     const { username, name, lastname, email, password } = req.body;
     const body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: false }
-    console.log(body)
     const resultado = await fetch(urlApi+'/usuarios', {
       method: "post",
       body: JSON.stringify(body),
@@ -62,33 +62,29 @@ router.post("/signup", async (req, res) => {
     //res.render("index", { productos: data });
   });
 
+//OBTENER USUARIOS DE LA API Y MOSTRARLOS EN TABLA MANTENEDOR
 router.get('/mantenedor', async (req,res)=>{
     let datos;
     await fetch(urlApi+'/usuarios')
         .then(result => result.json())
         .then(function(data) {
             let usuarios = data;
-            console.log(usuarios)
             res.render('mantenedor/index',{usuarios});
           })
           .catch(function(error) {
             console.log(error);
           });
 })
+//AGREGAR NUEVO USUARIO POR MANTENEDOR
 router.post('/mantenedor', async (req,res)=>{
-
     let { username, name, lastname, email, password , admin } = req.body;
-    console.log(admin)
     let body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: admin }
 
-    console.log(admin)
     if(admin != 1){
         admin = false;
     } else{
         admin = true;
     }
-    console.log(admin)
-    console.log(body)
     const resultado = await fetch(urlApi+'/usuarios', {
       method: "post",
       body: JSON.stringify(body),
@@ -97,46 +93,20 @@ router.post('/mantenedor', async (req,res)=>{
     //const data = await resultado.json();
     res.redirect('/mantenedor');
     //res.render("index", { productos: data });
-    
-})
+});
 
-router.post('/mantenedor/update',(req,res)=>{
-    console.log(req.body)
-    let idusuario = req.body.idusuario;
-    let username = req.body.username;
-    let name = req.body.name;
-    let lastname = req.body.lastname;
-    let email = req.body.email;
-    let password = req.body.password;
-    let isAdmin = req.body.admin;
-    
-    if(isAdmin != 1){
-        isAdmin = false;
-    } else{
-        isAdmin = true;
-    }
-    console.log(idusuario)
+//EDITAR (PATCH) UN USUARIO EN MANTENEDOR API
+router.post('/mantenedor/update', async (req,res)=>{
+    let { idusuario,username, name, lastname, email, password , admin } = req.body;
+    let body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: admin }
 
-    conexion.query(`UPDATE usuario SET nombreusuario = '${name}',apellidousuario = '${lastname}', nickusuario = '${username}',emailusuario = '${email}',claveusuario = '${password}' WHERE idusuario = '${idusuario}'`,(error,results) =>{
-        if(error){
-            console.log('DATOS ACTUALIZADOS INCORRECTAMENTE')
-            throw error;
-        }else{
-            console.log('DATOS ACTUALIZADOS CORRECTAMENTE')
-        }
-    })
-
-    /*
-    conexion.query(`UPDATE usuario SET nombreusuario = '${name}',apellidousuario = ${lastname}, nickusuario = ${username}, emailusuario = ${email}, password = ${password} WHERE idusuario = ${idusuario}`,(error,results) =>{
-        if(error){
-            throw error;
-        }else{
-            console.log('DATOS ACTUALIZADOS CORRECTAMENTE')
-        }
-    })
-    */
+    await fetch(urlApi+'/usuarios/'+idusuario, {
+        method: "PATCH",
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" }
+      });
     res.redirect('/mantenedor');
-})
+});
 
 router.get('/user',(req,res)=>{
     res.render('user');
