@@ -5,8 +5,8 @@ const conexion = require('./database/db')
 const urlApi = 'http://localhost:3001/api'
 
 router.get('/',(req,res)=>{
+    /*
     let datos;
-
     fetch('http://localhost:3001/api/usuarios')
         .then(result => result.json())
         .then((output) => {
@@ -17,12 +17,10 @@ router.get('/',(req,res)=>{
         console.error(err)
         res.render('404')
     } );
-
+    */
+    res.render('index')   
 });
 
-router.get('/edit',(req,res)=>{
-    res.render('edit');
-})
 
 router.get('/about',(req,res)=>{
     res.render('about');
@@ -65,18 +63,19 @@ router.post("/signup", async (req, res) => {
   });
 
 router.get('/mantenedor',(req,res)=>{
-    let usuarios;
-    conexion.query('select idusuario,nombreusuario,apellidousuario,nickusuario,emailusuario,claveusuario,isadminusuario from usuario',(error,results)=>{
-        if(error){
-            throw error;
-        }else{
-            usuarios = results.rows;
-            res.render('mantenedor/index',{usuarios});
-        }
-    })
-    
-})
 
+    let datos;
+    fetch('http://localhost:3001/api/usuarios')
+        .then(result => result.json())
+        .then(function(data) {
+            let usuarios = data;
+            console.log(usuarios)
+            res.render('mantenedor/index',{usuarios});
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+})
 router.post('/mantenedor',(req,res)=>{
     let username = req.body.username;
     let name = req.body.name;
@@ -183,6 +182,6 @@ router.use((req, res,next) => {
         titulo: "404",
         descripcion: 'Pagina no encontrada'
     })
-})
+});
 
 module.exports = router;
