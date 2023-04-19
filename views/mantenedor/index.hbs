@@ -67,27 +67,26 @@
                         <td>{{this.apellidoUsuario}}</td>
                         <td>{{this.emailUsuario}}</td>
                         <td>
-                            <a href="/mantenedor" data-bs-toggle="modal" data-bs-target="#editModal{{this.idusuario}}">
+                            <a href="/mantenedor" data-bs-toggle="modal" data-bs-target="#editModal{{this.idUsuario}}">
                                 <img src="/img/icons/edit.svg" alt="" width="25px">
                             </a>
 
                             <!-- NO SE PASAN LOS VALORES AL MODAL-->
-                            <div class="modal fade" id="editModal{{this.idusuario}}">
+                            <div class="modal fade" id="editModal{{this.idUsuario}}">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form action="/mantenedor/update" method="POST">
-                                                <input class="form-control" type="text" id="idusuario" name="idusuario" placeholder="id" value="{{this.idusuario}}" required>
-                                                <input class="form-control" type="text" id="name" placeholder="Name" name="name" value="{{this.nombreusuario}}" required>
-                                                <input class="form-control" type="text" id="lastname" placeholder="Lastname" name="lastname" value="{{this.apellidousuario}}" required>
-                                                <input class="form-control" type="text" id="username" placeholder="Username" name="username" value="{{this.nickusuario}}" required>
-                                                <input class="form-control" type="email" id="email" placeholder="Email" name="email" value="{{this.emailusuario}}" required>
-                                                <input class="form-control" type="password" id="password" placeholder="Password" name="password" value="{{this.claveusuario}}" required>
+                                                <input class="form-control" type="text" id="idusuario" name="idusuario" placeholder="id" value="{{this.idUsuario}}" required>
+                                                <input class="form-control" type="text" id="name" placeholder="Name" name="name" value="{{this.nombreUsuario}}" required>
+                                                <input class="form-control" type="text" id="lastname" placeholder="Lastname" name="lastname" value="{{this.apellidoUsuario}}" required>
+                                                <input class="form-control" type="text" id="username" placeholder="Username" name="username" value="{{this.nickUsuario}}" required>
+                                                <input class="form-control" type="email" id="email" placeholder="Email" name="email" value="{{this.emailUsuario}}" required>
+                                                <input class="form-control" type="password" id="password" placeholder="Password" name="password" value="{{this.claveUsuario}}" required>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-ligth"
                                                             data-bs-dismiss="modal">Cerrar</button>
@@ -99,7 +98,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td><a id="{{this.idusuario}}" href="/mantenedor/{{this.idusuario}}">
+                        <td><a id="{{this.idUsuario}}" href="/mantenedor/{{this.idUsuario}}">
                         <img src="/img/icons/delete.svg" alt="" width="25px"></a>
 
                         </td>
