@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const conexion = require('./database/db')
+//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 const urlApi = 'http://localhost:3001/api'
 
 router.get('/',(req,res)=>{
@@ -113,31 +114,12 @@ router.get('/user',(req,res)=>{
 })
 
 //falta terminar la ruta eliminar al pulsar delete en mantenedores
-router.get('/mantenedor/:idName',(req,res)=>{
+router.get('/mantenedor/:idName', async (req,res)=>{
     let idName = req.params.idName;
-    conexion.query(`delete from perfil where idusuario = '${idName}';`),(error,perfil)=>{
-        if(error){
-            console.log('HUBO UN PROBLEMA CON ELIMINAR EL PERFIL')
-            throw error;
-        }else{
-            console.log('SE ELIMINO EL PERFIL SATISFACTORIAMENTE')
-        }
-    }
-    conexion.query(`delete from publicacion where idusuario = '${idName}';`),(error,publicacion)=>{
-        if(error){
-            console.log('HUBO UN PROBLEMA CON ELIMINAR LA PUBLICACION')
-            throw error;
-        }else{
-            console.log('SE ELIMINO LA PUBLICACION SATISFACTORIAMENTE')
-        }
-    }
-    conexion.query(`delete from usuario where idusuario = '${idName}';`,(error,results)=>{
-        if(error){
-            throw error;
-        }else{
-            console.log(`USUARIO '${idName}' ELIMINADO CON EXITO`)
-        }
-    })
+    await fetch(urlApi+'/usuarios/'+idName, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      });
     res.redirect('/mantenedor');
 })
 
