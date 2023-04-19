@@ -50,7 +50,7 @@ router.get('/signup',(req,res)=>{
 })
 router.post("/signup", async (req, res) => {
     const { username, name, lastname, email, password } = req.body;
-    const body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: true }
+    const body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: false }
     console.log(body)
     const resultado = await fetch(urlApi+'/usuarios', {
       method: "post",
@@ -62,10 +62,9 @@ router.post("/signup", async (req, res) => {
     //res.render("index", { productos: data });
   });
 
-router.get('/mantenedor',(req,res)=>{
-
+router.get('/mantenedor', async (req,res)=>{
     let datos;
-    fetch('http://localhost:3001/api/usuarios')
+    await fetch(urlApi+'/usuarios')
         .then(result => result.json())
         .then(function(data) {
             let usuarios = data;
@@ -76,34 +75,29 @@ router.get('/mantenedor',(req,res)=>{
             console.log(error);
           });
 })
-router.post('/mantenedor',(req,res)=>{
-    let username = req.body.username;
-    let name = req.body.name;
-    let lastname = req.body.lastname;
-    let email = req.body.email;
-    let password = req.body.password;
-    let isAdmin = req.body.admin;
-    if(isAdmin != 1){
-        isAdmin = false;
-    } else{
-        isAdmin = true;
-    }
+router.post('/mantenedor', async (req,res)=>{
 
-    conexion.query(`INSERT INTO usuario (nombreUsuario,apellidoUsuario,nickUsuario,emailUsuario,claveUsuario,isadminusuario)VALUES('${name}','${lastname}','${username}','${email}','${password}','${isAdmin}')`,(error,results) =>{
-        if(error){
-            throw error;
-        }else{
-            conexion.query('Select * from usuario',(error,results) =>{
-                if(error){
-                    throw error;
-                }else{
-                    //console.log(results)
-                }
-            })
-        }
-    })
-    
+    let { username, name, lastname, email, password , admin } = req.body;
+    console.log(admin)
+    let body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: admin }
+
+    console.log(admin)
+    if(admin != 1){
+        admin = false;
+    } else{
+        admin = true;
+    }
+    console.log(admin)
+    console.log(body)
+    const resultado = await fetch(urlApi+'/usuarios', {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" }
+    });
+    //const data = await resultado.json();
     res.redirect('/mantenedor');
+    //res.render("index", { productos: data });
+    
 })
 
 router.post('/mantenedor/update',(req,res)=>{
