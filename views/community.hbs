@@ -6,53 +6,15 @@
     <div class="splide" id="splide1">
         <div class="splide__track">
             <div class="splide__list">
-                <div class="splide__slide">
+                {{#each generos}}
+                    <div class="splide__slide">
                     <div class="img_box">
-                        <a href="https://splidejs.com/">
-                            <img src="/img/genresart/1.png" alt="" width="150px" height="150px">
+                        <a href="http://localhost:3000/genero/{{this.idGenero_musical}}"">
+                            <img src="{{this.imagenGenero_musical}}" alt="" width="150px" height="150px">
                         </a>
                     </div>
                 </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/2.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/3.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/4.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/5.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/6.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/7.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/8.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/genresart/9.png" alt="" width="150px" height="150px">
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
     </div>
@@ -130,8 +92,7 @@
         height   : '170px',
         start: number = 0,
         gap      : '12px',
-        autoWidth: true,
-        width: '450px'
+        autoWidth: true
     } ).mount();
 
 

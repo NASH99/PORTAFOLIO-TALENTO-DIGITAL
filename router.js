@@ -1,24 +1,11 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const urlApi = 'https://api-portafolio-production.up.railway.app/api'
-//const urlApi = 'http://localhost:3001/api'
+//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+const urlApi = 'http://localhost:3001/api'
 
-router.get('/',(req,res)=>{
-    /*
-    let datos;
-    fetch('http://localhost:3001/api/usuarios')
-        .then(result => result.json())
-        .then((output) => {
-            console.log('Output: ', output);
-            datos = output;
-            res.render('index')   
-    }).catch(err => {
-        console.error(err)
-        res.render('404')
-    } );
-    */
-    res.render('index')   
+router.get('/', async(req,res)=>{
+    await res.render('index')   
 });
 
 
@@ -30,9 +17,19 @@ router.get('/community',(req,res,next)=>{
     if(req.isAuthenticated()) return next();
     
     res.redirect('/login');
-} ,(req,res)=>{
-    let nombres = ['ignacio','manuel','andrea','francisco']
-    res.render('community',{nombres})
+} ,async (req,res)=>{
+    
+    await fetch(urlApi+'/generos')
+        .then(result => result.json())
+        .then(function(data) {
+            let generos = data;
+            res.render('community',{generos})
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+    
+    
     
 });
 
@@ -121,6 +118,14 @@ router.get('/mantenedor/:idName', async (req,res)=>{
       });
     res.redirect('/mantenedor');
 })
+
+//falta terminar ruta de seleccionar genero en community
+router.get('/genero/:id', async (req,res)=>{
+    let id = req.params.id;
+    
+
+    res.render('genres',{id})   
+});
 
 router.use((req, res,next) => {
     res.status(404).render('404',{
