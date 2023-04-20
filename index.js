@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const conexion = require('./database/db')
 const port = 3000;
 const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 //const urlApi = 'http://localhost:3001/api'
@@ -25,6 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Obteniendo usuarios desde api y comparando para ver si coincide o no
 passport.use(new PassportLocal(function(username,password,done){
     let datos;
 
