@@ -123,8 +123,18 @@ router.get('/mantenedor/:idName', async (req,res)=>{
 router.get('/genero/:id', async (req,res)=>{
     let id = req.params.id;
     
+    await fetch(urlApi+'/generos/usuarios/'+id)
+        .then(result => result.json())
+        .then(function(data) {
+            let usuariosGenero = data;
+            let genero = data[0].nombreGenero_musical; //falta agregar una validacion en caso de que no retorne nada
+            res.render('genres',{usuariosGenero,genero}) 
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
 
-    res.render('genres',{id})   
+      
 });
 
 router.use((req, res,next) => {

@@ -1,3 +1,44 @@
 {{#> plantilla}}
-<h1>Genero {{id}}</h1>
+
+<link rel="stylesheet" href="/css/genres.css">
+<link rel="stylesheet" href="/css/cards.css">
+
+<div class="container-md">
+    <h1>{{genero}}</h1>
+
+    <div class="contenedor-cards">
+        <div class="row">
+            {{#each usuariosGenero}}
+            <div class="col-sm-3">
+                <div class="card">
+                    <div>
+                        <div>
+                            <img src="/img/prueba.jpg" alt="">
+                        </div>
+                        <p>Usuario: {{this.nickUsuario}}</p>
+                        <p>Genero: {{this.nombreGenero_musical}}</p>
+                    </div>
+                    <button type="button" class="btn btn-light">Ver</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 {{/plantilla}}
