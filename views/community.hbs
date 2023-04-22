@@ -31,7 +31,7 @@
                             <img src="/img/prueba.jpg" alt="" width="150px" height="150px">
                         </a>
                         <div>
-                            <p>{{this.nickUsuario}}</p>
+                            <p class="nickUsuario">{{this.nombreArtistaPerfil}}</p>
                             <p>Genero: {{this.nombreGenero_musical}}</p>
                         </div>
                         
@@ -46,14 +46,6 @@
 </div>
 
 
-<!--   
-{{#each nombres}}
-    <p>nombres del array</p>
-{{/each}}
-<div class="contenedor">
-    {{> cards}}
-</div>
--->
 <link rel="stylesheet" href="/css/community.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -72,7 +64,7 @@
         perPage: 1,
         drag: boolean = true,
         pagination: boolean = false,
-        height   : '212px',
+        height   : '200px',
         start: number = 0,
         gap      : '12px',
         autoWidth: true
