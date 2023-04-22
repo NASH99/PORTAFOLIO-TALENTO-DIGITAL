@@ -23,39 +23,22 @@
     <div class="splide" id="splide2">
         <div class="splide__track">
             <div class="splide__list">
+
+                {{#each top10}}
                 <div class="splide__slide">
                     <div class="img_box">
                         <a href="https://splidejs.com/">
                             <img src="/img/prueba.jpg" alt="" width="150px" height="150px">
                         </a>
-                        <p>Artista</p>
+                        <div>
+                            <p>{{this.nickUsuario}}</p>
+                            <p>Genero: {{this.nombreGenero_musical}}</p>
+                        </div>
+                        
                     </div>
                 </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/prueba2.jpg" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/prueba.jpg" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/prueba.jpg" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/prueba2.jpg" alt="" width="150px" height="150px">
-                    </div>
-                </div>
-                <div class="splide__slide">
-                    <div class="img_box">
-                        <img src="/img/prueba.jpg" alt="" width="150px" height="150px">
-                    </div>
-                </div>
+                {{/each}}
+
             </div>
         </div>
     </div>
@@ -89,7 +72,7 @@
         perPage: 1,
         drag: boolean = true,
         pagination: boolean = false,
-        height   : '170px',
+        height   : '212px',
         start: number = 0,
         gap      : '12px',
         autoWidth: true

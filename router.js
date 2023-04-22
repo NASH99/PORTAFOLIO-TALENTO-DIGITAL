@@ -19,11 +19,22 @@ router.get('/community',(req,res,next)=>{
     res.redirect('/login');
 } ,async (req,res)=>{
     
+    let top10=await fetch(urlApi+'/top10')
+        .then(result => result.json())
+        .then(function(data) {
+            let top10 = data;
+            return top10;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+    
     await fetch(urlApi+'/generos')
         .then(result => result.json())
         .then(function(data) {
             let generos = data;
-            res.render('community',{generos})
+            console.log(top10)
+            res.render('community',{generos,top10})
           })
           .catch(function(error) {
             console.log(error);
