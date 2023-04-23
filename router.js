@@ -130,6 +130,20 @@ router.get('/mantenedor/:idName', async (req,res)=>{
     res.redirect('/mantenedor');
 })
 
+router.get('/perfil/:idName', async (req,res)=>{
+    let idName = req.params.idName;
+    await fetch(urlApi+'/perfil/'+idName)
+        .then(result => result.json())
+        .then(function(data) {
+            let usuarios = data;
+            res.render('profile',{usuarios});
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+
+})
+
 //falta terminar ruta de seleccionar genero en community
 router.get('/genero/:id', async (req,res)=>{
     let id = req.params.id;
