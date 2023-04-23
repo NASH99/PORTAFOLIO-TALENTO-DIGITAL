@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const urlApi = 'https://api-portafolio-production.up.railway.app/api'
-//const urlApi = 'http://localhost:3001/api'
+//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+const urlApi = 'http://localhost:3001/api'
 
 const bodyparser = require('body-parser');
 
@@ -27,25 +27,19 @@ app.use(passport.session());
 //Obteniendo usuarios desde api y comparando para ver si coincide o no
 passport.use(new PassportLocal(function(username,password,done){
     let datos;
-
+    
     fetch(urlApi+'/usuarios')
         .then(result => result.json())
         .then((output) => {
             //console.log('Output: ', output);
             datos = output;
-            console.log(datos)
             datos.forEach(element => {
-                console.log(element.emailUsuario)
-                console.log(element.claveUsuario)
                 if(username === element.emailUsuario && password === element.claveUsuario){     
-                    console.log('USUARIOS CORRECTOS')
-                    console.log(element.emailUsuario)
-                    console.log(element.claveUsuario) 
+                    //console.log('USUARIOS CORRECTOS')
                     return done(null, {id:element.idUsuario,name:element.nombreUsuario});
                 }
-                    console.log('No hay coincidencias')
+                    //console.log('No hay coincidencias')
                     //return done(null,false);
-
             });
 
     }).catch(err => {
