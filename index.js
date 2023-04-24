@@ -25,26 +25,31 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Obteniendo usuarios desde api y comparando para ver si coincide o no
-passport.use(new PassportLocal(function(username,password,done){
-    let datos;
-    
-    fetch(urlApi+'/usuarios')
-        .then(result => result.json())
-        .then((output) => {
-            //console.log('Output: ', output);
-            datos = output;
-            datos.forEach(element => {
-                if(username === element.emailUsuario && password === element.claveUsuario){     
-                    //console.log('USUARIOS CORRECTOS')
-                    return done(null, {id:element.idUsuario,name:element.nombreUsuario});
-                }
-                    //console.log('No hay coincidencias')
-                    //return done(null,false);
-            });
+passport.use(new PassportLocal(async function(username,password,done){
+    async function getUsers() {
+        const response = await fetch(urlApi+'/usuarios')
+        const data = await response.json()
+        return data;
+    }
 
-    }).catch(err => {
-        console.error(err)
-    } );
+    const users = await getUsers();
+    let email;
+    let pass;
+    users.forEach(element => {
+        if(username === element.emailUsuario && password === element.claveUsuario){     
+            const emaildatos = element.emailUsuario;
+            const passdatos = element.claveUsuario;
+            console.log(emaildatos)
+            console.log('SE ENCONTRO COINCIDENCIA')
+            email = emaildatos;
+            pass = passdatos;
+        }
+    });
+    if(username === email && password === pass){
+        return done(null, {id:email,name:pass});
+    }else{
+        return done(null,false);
+    }
 }));
 
 passport.serializeUser(function(user,done){
@@ -75,3 +80,7 @@ app.listen(port, ()=>{
     console.log('Server corriendo en: http://localhost:'+port);
 
 })
+
+
+
+

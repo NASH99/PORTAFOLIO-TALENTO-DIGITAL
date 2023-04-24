@@ -154,9 +154,7 @@ router.get('/genero/:id', async (req,res)=>{
             let usuariosGenero = data;
             console.log(usuariosGenero)
             let genero = usuariosGenero[0].nombreGenero_musical; //falta agregar una validacion en caso de que no retorne nada
-            console.log(genero)
             let nombreGenero = genero.charAt(0).toUpperCase() + genero.slice(1);
-            console.log(nombreGenero)
             res.render('genres',{usuariosGenero,nombreGenero}) 
           })
           .catch(function(error) {
