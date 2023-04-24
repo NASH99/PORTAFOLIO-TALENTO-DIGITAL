@@ -38,4 +38,10 @@ a {
 }
 a .button { /* Safari */
   transition-duration: 0.4s;
+}
+
+@media only screen and (max-width: 550px) {
+  .sesion {
+    display: none;
+  }
 }/*# sourceMappingURL=navbar.css.map */
