@@ -1,6 +1,24 @@
 .contenedor-cards {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto;
+  gap: 1em;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1220px) {
+  .contenedor-cards {
+    grid-template-columns: auto auto auto;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .contenedor-cards {
+    grid-template-columns: auto auto;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .contenedor-cards {
+    grid-template-columns: auto;
+  }
 }/*# sourceMappingURL=genres.css.map */

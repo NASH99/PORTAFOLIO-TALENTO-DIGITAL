@@ -7,9 +7,7 @@
     <h1>{{nombreGenero}}</h1>
 
     <div class="contenedor-cards">
-        <div class="row">
             {{#each usuariosGenero}}
-            <div class="col-sm-3">
                 <div class="card">
                     <div>
                         <div>
@@ -19,11 +17,8 @@
                         <p>Genero: {{this.nombreGenero_musical}}</p>
                     </div>
                     <a href="http://localhost:3000/perfil/{{this.idUsuario}}" class="btn btn-light"> ver </a>
-                    
                 </div>
-            </div>
             {{/each}}
-        </div>
     </div>
 
 
