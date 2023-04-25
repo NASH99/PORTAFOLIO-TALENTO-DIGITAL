@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
-const urlApi = 'http://localhost:3001/api'
+const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+//const urlApi = 'http://localhost:3001/api'
 
 const bodyparser = require('body-parser');
 
