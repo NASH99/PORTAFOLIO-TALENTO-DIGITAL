@@ -2,12 +2,19 @@
 .contenedor{
     padding-bottom: 100px;
     display: flex;
-    
+    justify-content: center;
     aside{
         width: 20%;
     }
     section{
         width: 80%;
-
     }
 }
+
+@media only screen and (max-width: 950px) {
+    .contenedor{
+        flex-direction: column;
+        gap: 4px;
+    }
+  }
+
