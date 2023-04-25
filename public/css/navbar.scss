@@ -3,6 +3,9 @@ $nav-color: #151515;
     margin: 0;
     padding: 0;
 }
+main{
+    width: 100%;
+}
 nav{
     background-color: $nav-color;
     width: 100%;
@@ -18,16 +21,17 @@ h1{
 
 ul{
     display: flex;
+    padding: 0;
     a{
         font-size: 1.5rem;
         text-decoration: none;
         li{
             color: #5e625f;
-            padding: 0 12px 0 12px;
+            padding: 0 6px 0 6px;
             list-style: none;
-            transition-duration: 0.4s;
         }
         li:hover{
+            transition-duration: 0.3s;
             color: #e6f0e8;
         }
     }

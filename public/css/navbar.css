@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+main {
+  width: 100%;
+}
+
 nav {
   background-color: #151515;
   width: 100%;
@@ -18,6 +22,7 @@ h1 {
 
 ul {
   display: flex;
+  padding: 0;
 }
 ul a {
   font-size: 1.5rem;
@@ -25,11 +30,11 @@ ul a {
 }
 ul a li {
   color: #5e625f;
-  padding: 0 12px 0 12px;
+  padding: 0 6px 0 6px;
   list-style: none;
-  transition-duration: 0.4s;
 }
 ul a li:hover {
+  transition-duration: 0.3s;
   color: #e6f0e8;
 }
 
