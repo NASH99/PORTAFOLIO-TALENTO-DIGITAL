@@ -31,6 +31,12 @@ body{
     }
 }
 
+.contenedor2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 form{
     display: flex;
     flex-direction: column;
@@ -56,5 +62,22 @@ p{
     a{
         color: #737875;
         text-decoration: underline;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .imagen{
+        display: none;
+    }
+    button{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    form{
+        width: 350px;
+    }
+    button{
+        width: 350px !important;
     }
 }
