@@ -46,7 +46,8 @@
 
         </aside>
         <section>
-            <table class="table">
+            <div class="table-responsive">
+                <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">id</th>
@@ -58,8 +59,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-
                     {{#each usuarios}}
                     <tr>
                         <th scope="row">{{this.idUsuario}}</th>
@@ -131,6 +130,8 @@
                     {{/each}}
                 </tbody>
             </table>
+            </div>
+            
         </section>
     </div>
 
