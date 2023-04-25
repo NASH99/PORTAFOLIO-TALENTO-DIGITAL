@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 //const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 const urlApi = 'http://localhost:3001/api'
 
@@ -76,7 +76,7 @@ app.set('views', __dirname + '/views')
 
 app.use('/', require('./router'));
 
-app.listen(port, ()=>{
+app.listen(port,'0.0.0.0', ()=>{
     console.log('Server corriendo en: http://localhost:'+port);
 
 })
