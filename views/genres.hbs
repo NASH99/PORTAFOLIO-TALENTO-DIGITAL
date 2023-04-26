@@ -11,10 +11,18 @@
                 <div class="card">
                     <div>
                         <div>
-                            <img src="/img/prueba.jpg" alt="">
+                            <img src="{{this.imagen}}" alt="">
                         </div>
                         <p>{{this.nombreArtistaPerfil}}</p>
                         <p>Genero: {{this.nombreGenero_musical}}</p>
+                        <div class="likes">
+                            <img src="/img/icons/heart.svg" alt="">
+                            <div style="display:flex; margin-left:5px">
+                                <strong>{{this.topUsuario}}</strong>
+                                <p>likes</p>
+                            </div>
+                            
+                        </div>
                     </div>
                     <a href="http://localhost:3000/perfil/{{this.idUsuario}}" class="btn btn-light"> ver </a>
                 </div>
