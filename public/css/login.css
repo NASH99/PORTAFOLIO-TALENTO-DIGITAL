@@ -67,7 +67,7 @@ p a {
   text-decoration: underline;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 1250px) {
   .imagen {
     display: none;
   }
