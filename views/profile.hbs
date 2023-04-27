@@ -23,26 +23,20 @@
             <p>likes</p>
         </div>
     </div>
+    
     <aside class="container-imagen">
         <div class="splide" id="splide">
             <div class="splide__track">
                     <div class="splide__list">
+                        
+                        {{#each imagen}}
                         <div class="splide__slide">
                             <div class="img_box">
-                                    <img src="/img/prueba.jpg" alt="" width="100%">
+                                    <img src="{{this.imagen}}" alt="" width="100%">
                             </div>
                         </div>
-                        <div class="splide__slide">
-                            <div class="img_box">
-                                    <img src="/img/prueba2.jpg" alt="" width="100%">
-                        </div>
-                        </div>
-                        <div class="splide__slide">
-                            <div class="img_box">
-                                    <img src="/img/prueba.jpg" alt="" width="100%">
-                        </div>
-                       
-                    </div>
+                        {{/each}}
+                        
             </div>
         </div>
     </aside>

@@ -132,11 +132,25 @@ router.get('/mantenedor/:idName', async (req,res)=>{
 
 router.get('/perfil/:idName', async (req,res)=>{
     let idName = req.params.idName;
+    console.log(idName)
+
+    let imagen =await fetch(urlApi+'/perfil/img/'+idName)
+        .then(result => result.json())
+        .then(function(data) {
+            let imagen = data;
+            return imagen;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+
+
     await fetch(urlApi+'/perfil/'+idName)
         .then(result => result.json())
         .then(function(data) {
             let usuarios = data;
-            res.render('profile',{usuarios});
+            res.render('profile',{usuarios,imagen});
           })
           .catch(function(error) {
             console.log(error);
