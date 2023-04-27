@@ -1,5 +1,5 @@
 {{#> plantilla}}
-
+<link rel="stylesheet" href="/css/community.css">
 <div class="container-lg">
     <h1>Community</h1>
         <h3>Genres</h3>
@@ -10,7 +10,7 @@
                     <div class="splide__slide">
                         <div class="img_box">
                             <a href="http://localhost:3000/genero/{{this.idGenero_musical}}">
-                                <img src="{{this.imagenGenero_musical}}" alt="" width="150px" height="150px">
+                                <img src="{{this.imagenGenero_musical}}" alt="" width="150px" height="150px" style="border-radius: 6px;">
                             </a>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="splide__slide">
                     <div class="img_box">
                         <a href="http://localhost:3000/perfil/{{this.idUsuario}}">
-                            <img src="{{imagen}}" alt="" width="150px" height="150px">
+                            <img class="imgtop" src="{{imagen}}" alt="" width="200px" height="150px" style="border-radius: 6px;">
                         </a>
                         <div>
                             <p class="nickUsuario">{{this.nombreArtistaPerfil}}</p>
@@ -45,7 +45,7 @@
 </div>
 
 
-<link rel="stylesheet" href="/css/community.css">
+
 
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
