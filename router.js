@@ -145,7 +145,6 @@ router.get('/perfil/:idName', async (req,res)=>{
     });
 
 
-
     await fetch(urlApi+'/perfil/'+idName)
         .then(result => result.json())
         .then(function(data) {

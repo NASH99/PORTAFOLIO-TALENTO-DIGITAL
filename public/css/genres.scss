@@ -7,6 +7,12 @@
     justify-content: center;
 }
 
+.contenedor-info{
+    padding: 2px;
+    p{
+        margin: 2px;
+    }
+}
 
 .likes{
     display: flex;
@@ -16,7 +22,7 @@
         width: 20px !important;
     }
     p{
-        padding: 0;
+        padding: 0 0 0 3px;
         margin: 0;
     }
 }
