@@ -17,10 +17,9 @@
 .likes {
   display: flex;
   width: 100px;
-  gap: 2px;
 }
 .likes img {
-  width: 20px !important;
+  width: 25px !important;
 }
 .likes p {
   padding: 0 0 0 3px;
