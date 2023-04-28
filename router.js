@@ -4,6 +4,8 @@ const router = express.Router();
 //const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 const urlApi = 'http://localhost:3001/api'
 
+
+
 router.get('/', async(req,res)=>{
     await res.render('index')   
 });
@@ -15,7 +17,7 @@ router.get('/about',(req,res)=>{
 
 router.get('/community',(req,res,next)=>{
     if(req.isAuthenticated()) return next();
-    
+    console.log()
     res.redirect('/login');
 } ,async (req,res)=>{
     
