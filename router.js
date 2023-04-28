@@ -1,8 +1,8 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
-const urlApi = 'http://localhost:3001/api'
+const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+//const urlApi = 'http://localhost:3001/api'
 
 
 
