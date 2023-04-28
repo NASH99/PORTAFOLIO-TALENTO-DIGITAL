@@ -19,12 +19,23 @@ body{
     border-radius: 12px;
     padding: 32px;
     .likes{
+        margin: 0 0 8px 2px;
         display: flex;
         width: 100px;
         gap: 2px;
         p{
             padding: 0;
             margin: 0;
+        }
+    }
+    .container-redes{
+        display: flex;
+        a{
+            margin: 0 0 0 4px;
+            display: flex;
+            p{
+                margin: 0 0 0 4px;
+            }
         }
     }
 }
