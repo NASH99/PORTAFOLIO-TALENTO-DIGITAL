@@ -36,22 +36,27 @@ passport.use(new PassportLocal(async function(username,password,done){
     let email;
     let pass;
     let admin;
+    let id;
+    let name;
     users.forEach(element => {
         if(username === element.emailUsuario && password === element.claveUsuario){     
+            const idDatos = element.idUsuario;
             const emaildatos = element.emailUsuario;
             const passdatos = element.claveUsuario;
             const isAdmin = element.isadminUsuario;
+            const nameDatos = element.nombreUsuario;
             console.log(emaildatos)
             console.log('SE ENCONTRO COINCIDENCIA')
             console.log(isAdmin)
             email = emaildatos;
             pass = passdatos;
             admin = isAdmin;
-
+            id = idDatos;
+            name = nameDatos;
         }
     });
     if(username === email && password === pass){
-        return done(null, {id:email,name:pass,admin:admin});
+        return done(null, {id:id,name:name});
     }else{
         return done(null,false);
     }
