@@ -24,14 +24,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Obteniendo usuarios desde api y comparando para ver si coincide o no
-passport.use(new PassportLocal(async function(username,password,done){
     async function getUsers() {
         const response = await fetch(urlApi+'/usuarios')
         const data = await response.json()
         return data;
     }
 
+//Obteniendo usuarios desde api y comparando para ver si coincide o no
+passport.use(new PassportLocal(async function(username,password,done){
     const users = await getUsers();
     let email;
     let pass;
