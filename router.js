@@ -1,13 +1,13 @@
-const express = require('express');
-const passport = require('passport');
+import express from 'express';
+import passport from 'passport';
+import { apiURL } from './config.js';
 const router = express.Router();
-const urlApi = 'https://api-portafolio-production.up.railway.app/api'
-//const urlApi = 'http://localhost:3001/api'
+//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+const urlApi = apiURL;
 
 router.get('/', async(req,res)=>{
     await res.render('index')   
 });
-
 
 router.get('/about',(req,res)=>{
     res.render('about');
@@ -15,7 +15,6 @@ router.get('/about',(req,res)=>{
 
 router.get('/community',(req,res,next)=>{
     if(req.isAuthenticated()) return next();
-    console.log()
     res.redirect('/login');
 } ,async (req,res)=>{
     
@@ -39,8 +38,6 @@ router.get('/community',(req,res,next)=>{
           .catch(function(error) {
             console.log(error);
     });
-    
-    
     
 });
 
@@ -183,4 +180,4 @@ router.use((req, res,next) => {
     })
 });
 
-module.exports = router;
+export default router;

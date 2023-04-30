@@ -1,12 +1,17 @@
-
-const express = require('express');
+import router from './router.js'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { PORT,apiURL } from './config.js';
 const app = express();
-const port = process.env.PORT || 3000;
-const urlApi = 'https://api-portafolio-production.up.railway.app/api'
-//const urlApi = 'http://localhost:3001/api'
+
+//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const urlApi = apiURL;
 
 //Motor de plantilla
-const hbs = require('hbs');
+import hbs from 'hbs';
 app.use(express.static(__dirname + '/public'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 //app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
@@ -15,13 +20,15 @@ hbs.registerPartials(__dirname + '/views/partials', function (err) {})
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views')
 
-const bodyparser = require('body-parser');
+import bodyparser from 'body-parser';
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
-const cookieParser = require('cookie-parser');
-const passport = require('passport');
-const session = require('express-session');
-const PassportLocal = require('passport-local').Strategy;
+import cookieParser from 'cookie-parser';
+import passport from 'passport';
+import session from 'express-session';
+import PassportLocal from 'passport-local';
+//
+PassportLocal.Strategy;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('Mi secreto'));
@@ -83,14 +90,10 @@ passport.deserializeUser(function(user,done){
 
 
 
+app.use('/', router);
 
-
-
-app.use('/', require('./router'));
-
-app.listen(port,'0.0.0.0', ()=>{
-    console.log('Server corriendo en: http://localhost:'+port);
-
+app.listen(PORT,'0.0.0.0', ()=>{
+    console.log('Server corriendo en: http://localhost:'+PORT);
 })
 
 

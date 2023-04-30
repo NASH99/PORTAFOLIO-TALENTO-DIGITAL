@@ -1,5 +1,5 @@
 import {config} from 'dotenv'
 
 config()
-
-export const PORT = process.env.PORT || 3000 
+export const apiURL = process.env.apiURL || 'http://localhost:3001/api';
+export const PORT = process.env.PORT || 3000;
