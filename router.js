@@ -4,8 +4,6 @@ const router = express.Router();
 const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 //const urlApi = 'http://localhost:3001/api'
 
-
-
 router.get('/', async(req,res)=>{
     await res.render('index')   
 });
