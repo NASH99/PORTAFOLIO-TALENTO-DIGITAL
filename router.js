@@ -13,7 +13,25 @@ router.get('/about',(req,res)=>{
 })
 
 router.get('/community',(req,res,next)=>{
-    if(req.isAuthenticated()) return next();
+  
+  if(req.session.passport.user == 13){
+    let datos;
+    fetch(urlApi+'/usuarios')
+      .then(result => result.json())
+      .then(function(data) {
+          let usuarios = data;
+          res.render('mantenedor/index',{usuarios});
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    console.log('pase por aqui');
+  }
+    if(req.isAuthenticated()) {
+      console.log(req.session.passport.user)
+      return next()
+      
+    };
     res.redirect('/login');
 } ,async (req,res)=>{
     
@@ -31,7 +49,6 @@ router.get('/community',(req,res,next)=>{
         .then(result => result.json())
         .then(function(data) {
             let generos = data;
-            console.log(top10)
             res.render('community',{generos,top10})
           })
           .catch(function(error) {
