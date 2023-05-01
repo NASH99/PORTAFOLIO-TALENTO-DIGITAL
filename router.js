@@ -2,7 +2,6 @@ import express from 'express';
 import passport from 'passport';
 import { apiURL } from './config.js';
 const router = express.Router();
-//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 const urlApi = apiURL;
 
 router.get('/', async(req,res)=>{

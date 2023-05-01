@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url';
 import { PORT,apiURL } from './config.js';
 const app = express();
 
-//const urlApi = 'https://api-portafolio-production.up.railway.app/api'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const urlApi = apiURL;
