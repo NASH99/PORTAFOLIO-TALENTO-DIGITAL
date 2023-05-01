@@ -1,3 +1,4 @@
+//Importando lo necesario para hacer funcionar la aplicacion
 import express from 'express';
 import passport from 'passport';
 import { apiURL } from './config.js';
@@ -8,10 +9,12 @@ router.get('/', async(req,res)=>{
     await res.render('index')   
 });
 
+//Ruta about
 router.get('/about',(req,res)=>{
     res.render('about');
 })
 
+//Ruta community y filtrando en caso de ser administrador, rediriguir a la ruta correspondiente, al igual que haciendo fetch de la informacion necesaria
 router.get('/community',(req,res,next)=>{
     if(req.isAuthenticated()) {
       console.log(req.session.passport.user)
@@ -30,7 +33,6 @@ router.get('/community',(req,res,next)=>{
         console.log('pase por aqui');
       }
       return next()
-      
     };
     res.redirect('/login');
 } ,async (req,res)=>{
@@ -145,20 +147,22 @@ router.get('/community',(req,res,next)=>{
     });
     
 });
-
+//Ruta inicio de sesion
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-
+//Autenticacion de passport en caso de exito o fallido redirigir a rutas correspondientes
 router.post('/login',passport.authenticate('local',{
     successRedirect:'/community',
     failureRedirect: '/login'
 }));
 
+//Ruta de registro
 router.get('/signup',(req,res)=>{
     res.render('signup');
 })
-//METODO POST PARA GUARDAR NUEVO REGISTRO SIGNUP
+
+//METODO POST PARA GUARDAR NUEVO REGISTRO SIGNUP y solicitando informacion
 router.post("/signup", async (req, res) => {
     const { username, name, lastname, email, password } = req.body;
     const body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: false }
@@ -341,6 +345,7 @@ router.get('/mantenedor/:idName', async (req,res)=>{
     res.redirect('/mantenedor');
 })
 
+//Obtener perfil de cada usuario
 router.get('/perfil/:idName', async (req,res)=>{
     let idName = req.params.idName;
     console.log(idName)
@@ -368,7 +373,7 @@ router.get('/perfil/:idName', async (req,res)=>{
 
 })
 
-//falta terminar ruta de seleccionar genero en community
+//Obtener genero segun id
 router.get('/genero/:id', async (req,res)=>{
     let id = req.params.id;
     
@@ -387,6 +392,7 @@ router.get('/genero/:id', async (req,res)=>{
       
 });
 
+//Cuando no se encuentre alguna ruta, enviar a 404.hbs
 router.use((req, res,next) => {
     res.status(404).render('404',{
         titulo: "404",
