@@ -17,20 +17,17 @@ router.get('/about',(req,res)=>{
 //Ruta community y filtrando en caso de ser administrador, rediriguir a la ruta correspondiente, al igual que haciendo fetch de la informacion necesaria
 router.get('/community',(req,res,next)=>{
     if(req.isAuthenticated()) {
-      console.log(req.session.passport.user)
       if(req.session.passport.user == 13){
         let datos;
         fetch(urlApi+'/usuarios')
           .then(result => result.json())
           .then(function(data) {
               let usuarios = data;
-              console.log(usuarios);
               res.render('mantenedor/index',{usuarios});
           })
           .catch(function(error) {
             console.log(error);
           });
-        console.log('pase por aqui');
       }
       return next()
     };
@@ -313,9 +310,7 @@ router.post('/mantenedor', async (req,res)=>{
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
     });
-    //const data = await resultado.json();
     res.redirect('/mantenedor');
-    //res.render("index", { productos: data });
 });
 
 //EDITAR (PATCH) UN USUARIO EN MANTENEDOR API
@@ -348,7 +343,6 @@ router.get('/mantenedor/:idName', async (req,res)=>{
 //Obtener perfil de cada usuario
 router.get('/perfil/:idName', async (req,res)=>{
     let idName = req.params.idName;
-    console.log(idName)
 
     let imagen =await fetch(urlApi+'/perfil/img/'+idName)
         .then(result => result.json())
@@ -359,7 +353,6 @@ router.get('/perfil/:idName', async (req,res)=>{
           .catch(function(error) {
             console.log(error);
     });
-
 
     await fetch(urlApi+'/perfil/'+idName)
         .then(result => result.json())
@@ -381,7 +374,6 @@ router.get('/genero/:id', async (req,res)=>{
         .then(result => result.json())
         .then(function(data) {
             let usuariosGenero = data;
-            console.log(usuariosGenero)
             let genero = usuariosGenero[0].nombreGenero_musical; //falta agregar una validacion en caso de que no retorne nada
             let nombreGenero = genero.charAt(0).toUpperCase() + genero.slice(1);
             res.render('genres',{usuariosGenero,nombreGenero}) 
@@ -400,4 +392,5 @@ router.use((req, res,next) => {
     })
 });
 
+//Exportar router para ser utilizado en index.js
 export default router;

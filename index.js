@@ -62,7 +62,6 @@ passport.use(new PassportLocal(async function(username,password,done){
             const passdatos = element.claveUsuario;
             const isAdmin = element.isadminUsuario;
             const nameDatos = element.nombreUsuario;
-            console.log('SE ENCONTRO COINCIDENCIA')
             email = emaildatos;
             pass = passdatos;
             admin = isAdmin;
@@ -79,7 +78,6 @@ passport.use(new PassportLocal(async function(username,password,done){
 
 //Serializando usuario passport
 passport.serializeUser(function(user,done){
-    console.log(user.id,user.name,user.isAdmin)
     done(null, user.id);
 });
 //Deserializar usuario passport
