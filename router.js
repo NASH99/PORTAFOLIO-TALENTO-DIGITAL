@@ -14,21 +14,23 @@ router.get('/about',(req,res)=>{
 
 router.get('/community',(req,res,next)=>{
   
-  if(req.session.passport.user == 13){
-    let datos;
-    fetch(urlApi+'/usuarios')
-      .then(result => result.json())
-      .then(function(data) {
-          let usuarios = data;
-          res.render('mantenedor/index',{usuarios});
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    console.log('pase por aqui');
-  }
+
     if(req.isAuthenticated()) {
       console.log(req.session.passport.user)
+      if(req.session.passport.user == 13){
+        let datos;
+        fetch(urlApi+'/usuarios')
+          .then(result => result.json())
+          .then(function(data) {
+              let usuarios = data;
+              console.log(usuarios);
+              res.render('mantenedor/index',{usuarios});
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+        console.log('pase por aqui');
+      }
       return next()
       
     };
@@ -79,8 +81,28 @@ router.post("/signup", async (req, res) => {
       headers: { "Content-Type": "application/json" }
     });
     //const data = await resultado.json();
-    res.render('community');
-    //res.render("index", { productos: data });
+
+      let top10=await fetch(urlApi+'/top10')
+        .then(result => result.json())
+        .then(function(data) {
+            let top10 = data;
+            return top10;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    await fetch(urlApi+'/generos')
+        .then(result => result.json())
+        .then(function(data) {
+            let generos = data;
+            res.render('community',{generos,top10})
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    
   });
 
 //OBTENER USUARIOS DE LA API Y MOSTRARLOS EN TABLA MANTENEDOR
