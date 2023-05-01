@@ -1,3 +1,4 @@
+//Importando lo necesario para hacer funcionar la aplicacion
 import express from 'express';
 import passport from 'passport';
 import { apiURL } from './config.js';
@@ -8,13 +9,13 @@ router.get('/', async(req,res)=>{
     await res.render('index')   
 });
 
+//Ruta about
 router.get('/about',(req,res)=>{
     res.render('about');
 })
 
+//Ruta community y filtrando en caso de ser administrador, rediriguir a la ruta correspondiente, al igual que haciendo fetch de la informacion necesaria
 router.get('/community',(req,res,next)=>{
-  
-
     if(req.isAuthenticated()) {
       console.log(req.session.passport.user)
       if(req.session.passport.user == 13){
@@ -32,7 +33,6 @@ router.get('/community',(req,res,next)=>{
         console.log('pase por aqui');
       }
       return next()
-      
     };
     res.redirect('/login');
 } ,async (req,res)=>{
@@ -46,32 +46,123 @@ router.get('/community',(req,res,next)=>{
           .catch(function(error) {
             console.log(error);
     });
+    let topAfro=await fetch(urlApi+'/topAfro')
+        .then(result => result.json())
+        .then(function(data) {
+            let topAfro = data;
+            return topAfro;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topBlues=await fetch(urlApi+'/topBlues')
+        .then(result => result.json())
+        .then(function(data) {
+            let topBlues = data;
+            return topBlues;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topJazz=await fetch(urlApi+'/topJazz')
+        .then(result => result.json())
+        .then(function(data) {
+            let topJazz = data;
+            return topJazz;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topRyb=await fetch(urlApi+'/topR&b')
+        .then(result => result.json())
+        .then(function(data) {
+            let topRyb = data;
+            return topRyb;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
     
+    let topSalsa=await fetch(urlApi+'/topSalsa')
+        .then(result => result.json())
+        .then(function(data) {
+            let topSalsa = data;
+            return topSalsa;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topRock=await fetch(urlApi+'/topRock')
+        .then(result => result.json())
+        .then(function(data) {
+            let topRock = data;
+            return topRock;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topElectronica=await fetch(urlApi+'/topElectronica')
+        .then(result => result.json())
+        .then(function(data) {
+            let topElectronica = data;
+            return topElectronica;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topReggaeton=await fetch(urlApi+'/topReggaeton')
+        .then(result => result.json())
+        .then(function(data) {
+            let topReggaeton = data;
+            return topReggaeton;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
+    let topPop=await fetch(urlApi+'/topPop')
+        .then(result => result.json())
+        .then(function(data) {
+            let topPop = data;
+            return topPop;
+          })
+          .catch(function(error) {
+            console.log(error);
+    });
+
     await fetch(urlApi+'/generos')
         .then(result => result.json())
         .then(function(data) {
             let generos = data;
-            res.render('community',{generos,top10})
+            res.render('community',{generos,top10,topAfro,topBlues,topJazz,topRyb,topSalsa,topRock,topElectronica,topReggaeton,topPop})
           })
           .catch(function(error) {
             console.log(error);
     });
     
 });
-
+//Ruta inicio de sesion
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-
+//Autenticacion de passport en caso de exito o fallido redirigir a rutas correspondientes
 router.post('/login',passport.authenticate('local',{
     successRedirect:'/community',
     failureRedirect: '/login'
 }));
 
+//Ruta de registro
 router.get('/signup',(req,res)=>{
     res.render('signup');
 })
-//METODO POST PARA GUARDAR NUEVO REGISTRO SIGNUP
+
+//METODO POST PARA GUARDAR NUEVO REGISTRO SIGNUP y solicitando informacion
 router.post("/signup", async (req, res) => {
     const { username, name, lastname, email, password } = req.body;
     const body = { nombre: name, apellido: lastname, nick: username, email: email, clave: password, admin: false }
@@ -82,25 +173,114 @@ router.post("/signup", async (req, res) => {
     });
     //const data = await resultado.json();
 
-      let top10=await fetch(urlApi+'/top10')
-        .then(result => result.json())
-        .then(function(data) {
-            let top10 = data;
-            return top10;
-          })
-          .catch(function(error) {
-            console.log(error);
-    });
+    let top10=await fetch(urlApi+'/top10')
+    .then(result => result.json())
+    .then(function(data) {
+        let top10 = data;
+        return top10;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+let topAfro=await fetch(urlApi+'/topAfro')
+    .then(result => result.json())
+    .then(function(data) {
+        let topAfro = data;
+        return topAfro;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
 
-    await fetch(urlApi+'/generos')
-        .then(result => result.json())
-        .then(function(data) {
-            let generos = data;
-            res.render('community',{generos,top10})
-          })
-          .catch(function(error) {
-            console.log(error);
-    });
+let topBlues=await fetch(urlApi+'/topBlues')
+    .then(result => result.json())
+    .then(function(data) {
+        let topBlues = data;
+        return topBlues;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topJazz=await fetch(urlApi+'/topJazz')
+    .then(result => result.json())
+    .then(function(data) {
+        let topJazz = data;
+        return topJazz;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topRyb=await fetch(urlApi+'/topR&b')
+    .then(result => result.json())
+    .then(function(data) {
+        let topRyb = data;
+        return topRyb;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topSalsa=await fetch(urlApi+'/topSalsa')
+    .then(result => result.json())
+    .then(function(data) {
+        let topSalsa = data;
+        return topSalsa;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topRock=await fetch(urlApi+'/topRock')
+    .then(result => result.json())
+    .then(function(data) {
+        let topRock = data;
+        return topRock;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topElectronica=await fetch(urlApi+'/topElectronica')
+    .then(result => result.json())
+    .then(function(data) {
+        let topElectronica = data;
+        return topElectronica;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topReggaeton=await fetch(urlApi+'/topReggaeton')
+    .then(result => result.json())
+    .then(function(data) {
+        let topReggaeton = data;
+        return topReggaeton;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topPop=await fetch(urlApi+'/topPop')
+    .then(result => result.json())
+    .then(function(data) {
+        let topPop = data;
+        return topPop;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+await fetch(urlApi+'/generos')
+    .then(result => result.json())
+    .then(function(data) {
+        let generos = data;
+        res.render('community',{generos,top10,topAfro,topBlues,topJazz,topRyb,topSalsa,topRock,topElectronica,topReggaeton,topPop})
+      })
+      .catch(function(error) {
+        console.log(error);
+});
 
     
   });
@@ -165,6 +345,7 @@ router.get('/mantenedor/:idName', async (req,res)=>{
     res.redirect('/mantenedor');
 })
 
+//Obtener perfil de cada usuario
 router.get('/perfil/:idName', async (req,res)=>{
     let idName = req.params.idName;
     console.log(idName)
@@ -192,7 +373,7 @@ router.get('/perfil/:idName', async (req,res)=>{
 
 })
 
-//falta terminar ruta de seleccionar genero en community
+//Obtener genero segun id
 router.get('/genero/:id', async (req,res)=>{
     let id = req.params.id;
     
@@ -211,6 +392,7 @@ router.get('/genero/:id', async (req,res)=>{
       
 });
 
+//Cuando no se encuentre alguna ruta, enviar a 404.hbs
 router.use((req, res,next) => {
     res.status(404).render('404',{
         titulo: "404",
