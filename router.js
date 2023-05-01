@@ -13,8 +13,6 @@ router.get('/about',(req,res)=>{
 })
 
 router.get('/community',(req,res,next)=>{
-  
-
     if(req.isAuthenticated()) {
       console.log(req.session.passport.user)
       if(req.session.passport.user == 13){
@@ -171,25 +169,114 @@ router.post("/signup", async (req, res) => {
     });
     //const data = await resultado.json();
 
-      let top10=await fetch(urlApi+'/top10')
-        .then(result => result.json())
-        .then(function(data) {
-            let top10 = data;
-            return top10;
-          })
-          .catch(function(error) {
-            console.log(error);
-    });
+    let top10=await fetch(urlApi+'/top10')
+    .then(result => result.json())
+    .then(function(data) {
+        let top10 = data;
+        return top10;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+let topAfro=await fetch(urlApi+'/topAfro')
+    .then(result => result.json())
+    .then(function(data) {
+        let topAfro = data;
+        return topAfro;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
 
-    await fetch(urlApi+'/generos')
-        .then(result => result.json())
-        .then(function(data) {
-            let generos = data;
-            res.render('community',{generos,top10})
-          })
-          .catch(function(error) {
-            console.log(error);
-    });
+let topBlues=await fetch(urlApi+'/topBlues')
+    .then(result => result.json())
+    .then(function(data) {
+        let topBlues = data;
+        return topBlues;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topJazz=await fetch(urlApi+'/topJazz')
+    .then(result => result.json())
+    .then(function(data) {
+        let topJazz = data;
+        return topJazz;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topRyb=await fetch(urlApi+'/topR&b')
+    .then(result => result.json())
+    .then(function(data) {
+        let topRyb = data;
+        return topRyb;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topSalsa=await fetch(urlApi+'/topSalsa')
+    .then(result => result.json())
+    .then(function(data) {
+        let topSalsa = data;
+        return topSalsa;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topRock=await fetch(urlApi+'/topRock')
+    .then(result => result.json())
+    .then(function(data) {
+        let topRock = data;
+        return topRock;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topElectronica=await fetch(urlApi+'/topElectronica')
+    .then(result => result.json())
+    .then(function(data) {
+        let topElectronica = data;
+        return topElectronica;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topReggaeton=await fetch(urlApi+'/topReggaeton')
+    .then(result => result.json())
+    .then(function(data) {
+        let topReggaeton = data;
+        return topReggaeton;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+let topPop=await fetch(urlApi+'/topPop')
+    .then(result => result.json())
+    .then(function(data) {
+        let topPop = data;
+        return topPop;
+      })
+      .catch(function(error) {
+        console.log(error);
+});
+
+await fetch(urlApi+'/generos')
+    .then(result => result.json())
+    .then(function(data) {
+        let generos = data;
+        res.render('community',{generos,top10,topAfro,topBlues,topJazz,topRyb,topSalsa,topRock,topElectronica,topReggaeton,topPop})
+      })
+      .catch(function(error) {
+        console.log(error);
+});
 
     
   });
