@@ -10,6 +10,11 @@ Javascript, HTML, CSS, MYSQL, EXPRESS, NODE JS, HBS
 ```bash
   1.NODE JS
 ```
+## Accesos
+```bash
+  Usuario normal: juanperezmusic@gmail.com / password
+  Administrador: admin@gmail.com / 123
+```
 ## Instalación BASE DE DATOS LOCAL
 Ejecutar codigo en mysqlworkbench ubicado en cualquiera de los dos proyectos
 ```bash
