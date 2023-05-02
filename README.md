@@ -64,6 +64,7 @@ Correr proyecto
 ![App Screenshot](https://raw.githubusercontent.com/nash99/PORTAFOLIO-TALENTO-DIGITAL-API/main/screenshots/1.png)
 ![App Screenshot](https://github.com/nash99/PORTAFOLIO-TALENTO-DIGITAL-API/blob/main/screenshots/5.png?raw=true)
 ![App Screenshot](https://github.com/nash99/PORTAFOLIO-TALENTO-DIGITAL-API/blob/main/screenshots/8.png?raw=true)
+![App Screenshot](https://github.com/nash99/PORTAFOLIO-TALENTO-DIGITAL/blob/main/screenshots/modelo.png?raw=true)
 
 ## Rúbrica: 
 Links para poder evaluar de mejor manera:
