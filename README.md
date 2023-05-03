@@ -4,7 +4,7 @@ BPM Community es una Red social para musicos con la finalidad de descubrir nueva
 
 
 ## 🛠 Herramientas utilizadas:
-Javascript, HTML, CSS, MYSQL, EXPRESS, NODE JS, HBS
+Javascript, HTML, CSS, MYSQL, EXPRESS, NODE JS, HBS, EXPRESS
 
 ## REQUISITOS MINIMOS
 ```bash
@@ -16,7 +16,7 @@ Javascript, HTML, CSS, MYSQL, EXPRESS, NODE JS, HBS
   Administrador: admin@gmail.com / 123
 ```
 ## Instalación BASE DE DATOS LOCAL
-Ejecutar codigo en mysqlworkbench ubicado en cualquiera de los dos proyectos
+Ejecutar codigo en mysqlworkbench ubicado en cualquiera de los dos proyectos al igual que agregar el codigo de procedimiento y procedimiento 2 a un nuevo procedimiento almacenado por separado para crearlos de forma correcta
 ```bash
   ubicacion: db/database.sql
   ubicacion: db/procedimiento.sql
@@ -27,6 +27,11 @@ https://github.com/nash99/PORTAFOLIO-TALENTO-DIGITAL
 
 POR DEFECTO UTILIZARA EL PUERTO 3000
 
+.env
+```bash
+PORT=3000
+apiURL=http://localhost:3001/api
+```
 Clonar proyecto
 ```bash
   git clone https://github.com/nash99/PORTAFOLIO-TALENTO-DIGITAL
@@ -46,6 +51,16 @@ https://github.com/nash99/PORTAFOLIO-TALENTO-DIGITAL-API
 
 
 SI NO SE DEFINEN LAS VARIABLES DE ENTORNO (.env) , POR DEFECTO UTILIZARA EL PUERTO 3001 Y ESTARA CONECTADO A LA BASE DE DATOS EN LÍNEA.
+
+.env
+```bash
+PORT=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_DATABASE=
+DB_PORT=
+```
 
 Clonar proyecto
 ```bash
@@ -89,5 +104,4 @@ Links para poder evaluar de mejor manera:
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/nash99)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ignacio-alvarado-marzan/)
-
 
